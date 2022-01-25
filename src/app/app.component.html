@@ -1,0 +1,40 @@
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <h2>Agents</h2>
+  <div class="spacer"></div>
+
+</div>
+
+<div class="content container" role="main" (click)="backdrop()">
+  <div class="row">
+    <div class="col-3">
+      <h6>Agents</h6>
+      <ul class="sidebar">
+        <li *ngFor='let agent of agents'>{{agent}}</li>
+      </ul>
+    </div>
+    <div class="col-6">
+      <div class="editorBox">
+        <div class="contentEditable" (click)="focus()">
+          <div class="highlight" *ngFor="let item of values">{{item}}</div>
+          <div class="inputBox">
+            <input type="text" #inputRef (keyup)="keyFunc($event)" [(ngModel)]="data" placeholder="Enter Name">
+            <div class="dropdown-menu" [class]="is_drop?'show':''">
+              <a class="dropdown-item" *ngFor="let item of agents" (click)="select(item)" #dropdown>{{item}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flexBox">
+        <div> <button class="btn btn-outline-warning" (click)="add()">+ Add Note</button></div>
+        <div> <button class="btn btn-warning" (click)="values = [];">Reset</button></div>
+      </div>
+    </div>
+    <div class="col-3">
+      <h6>Added Values</h6>
+      <ul class="sidebar">
+        <li *ngFor='let agent of addedValues'>{{agent}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
